@@ -10,6 +10,12 @@
 (defn about-page []
   (layout/render "about.html"))
 
+(defn foo-response [request]
+  {:status 200
+   :headers {"Content-Type" "text/html"}
+   :body  (str "<html><body><dt>Go bowling?</dt>"
+              "<dd>" (:go-bowling? request) "</dd></body></html>")})
+
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/about" [] (about-page)))
+  (GET "/about" request (foo-response request)))

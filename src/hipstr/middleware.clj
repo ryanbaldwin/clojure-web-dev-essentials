@@ -11,8 +11,14 @@
     (timbre/debug req)
     (handler req)))
 
+(defn go-bowling? [handler]
+  (fn [request]
+    (let [request (assoc request :go-bowling? "YES! NOW!")]
+      (handler request))))
+
 (def development-middleware
-  [wrap-error-page
+  [go-bowling?
+   wrap-error-page
    wrap-exceptions])
 
 (def production-middleware
