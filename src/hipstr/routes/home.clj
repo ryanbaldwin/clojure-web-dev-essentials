@@ -16,6 +16,10 @@
    :body  (str "<html><body><dt>Go bowling?</dt>"
               "<dd>" (:go-bowling? request) "</dd></body></html>")})
 
+(defn signup-page []
+  (layout/render "signup.html"))
+
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/about" request (foo-response request)))
+  (GET "/about" request (foo-response request))
+  (GET "/signup" [] (signup-page)))
