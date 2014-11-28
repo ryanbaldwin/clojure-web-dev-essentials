@@ -12,7 +12,8 @@
                  [environ "1.0.0"]
                  [im.chit/cronj "1.4.2"]
                  [noir-exception "0.2.2"]
-                 [prone "0.6.0"]]
+                 [prone "0.6.0"]
+                 [com.novemberain/validateur "2.3.1"]]
 
   :repl-options {:init-ns hipstr.repl}
   :jvm-opts ["-server"]
