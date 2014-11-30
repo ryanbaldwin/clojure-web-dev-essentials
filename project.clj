@@ -19,7 +19,8 @@
   :jvm-opts ["-server"]
   :plugins [[lein-ring "0.8.13"]
             [lein-environ "1.0.0"]
-            [lein-ancient "0.5.5"]]
+            [lein-ancient "0.5.5"]
+            [quickie "0.3.6"]]
   :ring {:handler hipstr.handler/app
          :init    hipstr.handler/init
          :destroy hipstr.handler/destroy}
