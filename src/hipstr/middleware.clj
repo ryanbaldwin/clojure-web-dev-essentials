@@ -17,8 +17,7 @@
       (handler request))))
 
 (def development-middleware
-  [log-request
-   go-bowling?
+  [go-bowling?
    wrap-error-page
    wrap-exceptions])
 
