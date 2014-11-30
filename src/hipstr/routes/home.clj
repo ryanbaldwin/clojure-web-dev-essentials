@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [hipstr.layout :as layout]
             [hipstr.util :as util]
+            [hipstr.validators.user-validator :as v]
             [ring.util.response :as response]))
 
 (defn home-page []
@@ -21,9 +22,9 @@
   (layout/render "signup.html"))
 
 (defn signup-page-submit [user]
-  #_(let [errors (signup/validate-signup user)]
+  (let [errors (v/validate-signup user)]
     (if (empty? errors)
-      (response/redirect "/signup-success.html")
+      (response/redirect "/signup-success")
       (layout/render "signup.html" (assoc user :errors errors)))))
 
 (defroutes home-routes
