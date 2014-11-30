@@ -8,5 +8,6 @@ pom.xml
 /.lein-*
 /.env
 *.log
+*.log.*
 *.idea
 *.nrepl-port
