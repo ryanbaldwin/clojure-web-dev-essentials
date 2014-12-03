@@ -13,14 +13,27 @@
                  [im.chit/cronj "1.4.2"]
                  [noir-exception "0.2.2"]
                  [prone "0.6.0"]
-                 [com.novemberain/validateur "2.3.1"]]
+                 [postgresql/postgresql "9.3-1102.jdbc41"]
+                 [migratus "0.7.0"]
+                 [com.novemberain/validateur "2.3.1"]
+                 [yesql "0.5.0-beta2"]
+                 [crypto-password "0.1.3"]]
 
   :repl-options {:init-ns hipstr.repl}
   :jvm-opts ["-server"]
   :plugins [[lein-ring "0.8.13"]
             [lein-environ "1.0.0"]
             [lein-ancient "0.5.5"]
+            [migratus-lein "0.1.0"]
             [quickie "0.3.6"]]
+  :migratus {:store :database
+             :migration-dir "migrations"
+             :migration-table-name "_migrations"
+             :db {:classname "org.postgresql.Driver"
+                  :subprotocol "postgresql"
+                  :subname "//localhost/postgres"
+                  :user "hipstr"
+                  :password "p455w0rd"}}
   :ring {:handler hipstr.handler/app
          :init    hipstr.handler/init
          :destroy hipstr.handler/destroy}

@@ -4,6 +4,7 @@
             [hipstr.routes.test-routes :refer [test-routes]]
             [hipstr.middleware :refer [load-middleware]]
             [hipstr.session-manager :as session-manager]
+            [migratus.core :as migratus]
             [noir.response :refer [redirect]]
             [noir.util.middleware :refer [app-handler]]
             [ring.middleware.defaults :refer [site-defaults]]
@@ -14,9 +15,27 @@
             [environ.core :refer [env]]
             [cronj.core :as cronj]))
 
+(def migratus-config
+  {:store :database
+   :migration-dir "migrations"
+   :migration-table-name "_migrations"
+   :db {:classname "org.postgresql.Driver"
+        :subprotocol "postgresql"
+        :subname "//localhost/postgres"
+        :user "hipstr"
+        :password "p455w0rd"}})
+
 (defroutes base-routes
   (route/resources "/")
   (route/not-found "Not Found"))
+
+(defn migrate-db []
+  (timbre/info "checking migrations")
+  (try
+    (migratus/migrate migratus-config)
+    (catch Exception e
+      (timbre/error e)))
+  (timbre/info "finished migrations"))
 
 (defn init
   "init will be called once when
@@ -33,6 +52,7 @@
 
   (if (env :dev) (parser/cache-off!))
   ;;start the expired session cleanup job
+  (migrate-db)
   (cronj/start! session-manager/cleanup-job)
   (timbre/info "\n-=[ hipstr started successfully"
                (when (env :dev) "using the development profile") "]=-"))

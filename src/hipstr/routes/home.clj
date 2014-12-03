@@ -1,6 +1,7 @@
 (ns hipstr.routes.home
   (:require [compojure.core :refer :all]
             [hipstr.layout :as layout]
+            [hipstr.models.user-model :as u]
             [hipstr.util :as util]
             [hipstr.validators.user-validator :as v]
             [ring.util.response :as response]))
@@ -24,7 +25,9 @@
 (defn signup-page-submit [user]
   (let [errors (v/validate-signup user)]
     (if (empty? errors)
-      (response/redirect "/signup-success")
+      (do
+        (u/add-user! user)
+        (response/redirect "/signup-success"))
       (layout/render "signup.html" (assoc user :errors errors)))))
 
 (defroutes home-routes
