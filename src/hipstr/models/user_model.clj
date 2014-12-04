@@ -1,12 +1,7 @@
 (ns hipstr.models.user-model
   (:require [yesql.core :refer [defqueries]]
-            [crypto.password.bcrypt :as password]))
-
-(def db-spec {:classname "org.postgresql.Driver"
-              :subprotocol "postgresql"
-              :subname "//localhost/postgres"
-              :user "hipstr"
-              :password "p455w0rd"})
+            [crypto.password.bcrypt :as password]
+            [hipstr.models.connection :refer [db-spec]]))
 
 (defqueries "hipstr/models/users.sql" {:connection db-spec})
 

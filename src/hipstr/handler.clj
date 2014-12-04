@@ -1,5 +1,6 @@
 (ns hipstr.handler
   (:require [compojure.core :refer [defroutes]]
+            [hipstr.routes.albums :refer [album-routes]]
             [hipstr.routes.home :refer [home-routes]]
             [hipstr.routes.test-routes :refer [test-routes]]
             [hipstr.middleware :refer [load-middleware]]
@@ -79,7 +80,7 @@
 
 (def app (app-handler
            ;; add your application routes here
-           [home-routes test-routes base-routes]
+           [home-routes album-routes test-routes base-routes]
            ;; add custom middleware here
            :middleware (load-middleware)
            :ring-defaults (mk-defaults false)

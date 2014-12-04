@@ -1,0 +1,14 @@
+{% extends "templates/base.html" %}
+{% block content %}
+<h1>{{artist}}</h1>
+<ol class="albums">
+    {% for a in albums %}
+    <li>
+        <div class="artist">
+            <a href="{{servlet-context}}/albums/{{a.artist}}">{{a.artist}}</a></div>
+        <div class="album-name">{{a.album_name}}</div>
+        <div class="release-date">Released {{a.release_date}}</div>
+    </li>
+    {% endfor %}
+</ol>
+{% endblock %}
