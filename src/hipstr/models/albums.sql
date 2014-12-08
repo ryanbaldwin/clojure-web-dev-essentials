@@ -14,3 +14,18 @@ FROM albums alb
 INNER JOIN artists art ON alb.artist_id = art.artist_id
 WHERE art.name = :artist
 ORDER BY alb.release_date DESC;
+
+-- name: insert-album<!
+-- Adds the album for the given artist to the database
+-- EXPECTS :artist_id, :album_name, and :release_date
+INSERT INTO albums (artist_id, name, release_date)
+VALUES (:artist_id, :album_name, date(:release_date));
+
+-- name: get-albums-by-name
+-- Fetches the specific album from the database for a particular artist.
+-- Expects :artist_id and :album_name.
+SELECT *
+FROM albums
+WHERE
+  artist_id = :artist_id and
+  name = :album_name;

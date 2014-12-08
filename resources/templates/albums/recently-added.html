@@ -1,6 +1,7 @@
 {% extends "templates/base.html" %}
 {% block content %}
 <h1>Recently Added</h1>
+<div class="col-sm-6 col-md-4">
 <ol class="albums">
     {% for a in albums %}
     <li>
@@ -11,4 +12,10 @@
     </li>
     {% endfor %}
 </ol>
+</div>
+<div class="col-sm-6 col-md-4">
+    {% with form=form %}
+    {% include "templates/albums/add-album.html" %}
+    {% endwith %}
+</div>
 {% endblock %}
