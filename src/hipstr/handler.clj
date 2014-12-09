@@ -1,5 +1,6 @@
 (ns hipstr.handler
   (:require [compojure.core :refer [defroutes]]
+            [hipstr.routes.access :as access]
             [hipstr.routes.albums :refer [album-routes]]
             [hipstr.routes.home :refer [home-routes]]
             [hipstr.routes.test-routes :refer [test-routes]]
@@ -85,7 +86,7 @@
            :middleware (load-middleware)
            :ring-defaults (mk-defaults false)
            ;; add access rules here
-           :access-rules []
+           :access-rules access/rules
            ;; serialize/deserialize the following data formats
            ;; available formats:
            ;; :json :json-kw :yaml :yaml-kw :edn :yaml-in-html

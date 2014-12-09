@@ -3,7 +3,8 @@
             [clojure.string :as s]
             [ring.util.response :refer [content-type response]]
             [compojure.response :refer [Renderable]]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]]
+            [hipstr.models.user-model :as user]))
 
 (def template-path "templates/")
 
@@ -26,5 +27,7 @@
       "text/html; charset=utf-8")))
 
 (defn render [template & [params]]
-  (RenderableTemplate. template params))
+  (let [params (-> (or params {})
+                   (assoc :is-authed? (user/is-authed? nil)))]
+  (RenderableTemplate. template params)))
 

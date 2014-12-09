@@ -11,3 +11,5 @@ pom.xml
 *.log.*
 *.idea
 *.nrepl-port
+
+hipstr.iml

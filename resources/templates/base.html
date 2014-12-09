@@ -16,6 +16,13 @@
             <li class="{{home-selected}}"><a href="{{servlet-context}}/">Home</a></li>
             <li class="{{about-selected}}"><a href="{{servlet-context}}/about">About</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+              {% if is-authed? %}
+              <li><a href="{{servlet-context}}/logout">Logout</a></li>
+              {% else %}
+              <li><a href="{{servlet-context}}/login">Login</a></li>
+              {% endif %}
+          </ul>
         </div>
       </div>
     </div>
