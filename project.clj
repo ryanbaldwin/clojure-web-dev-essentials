@@ -16,7 +16,7 @@
                  [postgresql/postgresql "9.3-1102.jdbc41"]
                  [migratus "0.7.0"]
                  [com.novemberain/validateur "2.3.1"]
-                 [yesql "0.5.0-beta2"]
+                 [yesql "0.5.0-rc1"]
                  [crypto-password "0.1.3"]]
 
   :repl-options {:init-ns hipstr.repl}
@@ -38,8 +38,7 @@
          :init    hipstr.handler/init
          :destroy hipstr.handler/destroy}
   :profiles
-  {:uberjar {:omit-source true
-             :env {:production true}
+  {:uberjar {:env {:production true}
              :aot :all}
    :production {:ring {:open-browser? false
                        :stacktraces?  false

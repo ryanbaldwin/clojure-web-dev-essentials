@@ -1,5 +1,6 @@
 (ns hipstr.handler
   (:require [compojure.core :refer [defroutes]]
+            [hipstr.models.connection :refer [db-spec]]
             [hipstr.routes.access :as access]
             [hipstr.routes.albums :refer [album-routes]]
             [hipstr.routes.home :refer [home-routes]]
@@ -21,11 +22,7 @@
   {:store :database
    :migration-dir "migrations"
    :migration-table-name "_migrations"
-   :db {:classname "org.postgresql.Driver"
-        :subprotocol "postgresql"
-        :subname "//localhost/postgres"
-        :user "hipstr"
-        :password "p455w0rd"}})
+   :db db-spec})
 
 (defroutes base-routes
   (route/resources "/")

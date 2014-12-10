@@ -11,5 +11,6 @@ pom.xml
 *.log.*
 *.idea
 *.nrepl-port
-
+nohup.out
 hipstr.iml
+profiles.clj
