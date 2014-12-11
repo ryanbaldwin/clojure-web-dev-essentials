@@ -38,7 +38,8 @@
          :init    hipstr.handler/init
          :destroy hipstr.handler/destroy}
   :profiles
-  {:uberjar {:env {:production true}
+  {:uberjar {:omit-source false
+             :env {:production true}
              :aot :all}
    :production {:ring {:open-browser? false
                        :stacktraces?  false
