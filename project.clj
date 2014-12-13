@@ -17,7 +17,8 @@
                  [migratus "0.7.0"]
                  [com.novemberain/validateur "2.3.1"]
                  [yesql "0.5.0-rc1"]
-                 [crypto-password "0.1.3"]]
+                 [crypto-password "0.1.3"]
+                 [korma "0.4.0"]]
 
   :repl-options {:init-ns hipstr.repl}
   :jvm-opts ["-server"]
