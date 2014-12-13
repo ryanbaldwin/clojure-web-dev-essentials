@@ -51,4 +51,4 @@
            GROUP BY art.name
            HAVING count(*) > ?" [1]] :results)
 
-(transaction (delete artists (where {:name "Carlos Hungus"})))
+#_(transaction (delete artists (where {:name "Carlos Hungus"})))
