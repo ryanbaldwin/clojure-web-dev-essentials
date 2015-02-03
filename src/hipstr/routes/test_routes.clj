@@ -21,5 +21,5 @@
   ;use & to get access to unbound params, and call our route handler function
   (GET "/req/:val/:another-val/:and-another" [val & remainders]
        (str val "<br>" remainders))
-  ;moving and restructuring the route will execute this instead of the /req/:val route.  
+  ;givign the route a different URL from /req/:val will ensure its execution
   (GET "/req/key/:key" [key :as request] (render-request-val request key)))
