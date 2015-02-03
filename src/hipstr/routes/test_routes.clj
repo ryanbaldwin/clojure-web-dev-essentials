@@ -18,8 +18,8 @@
   (GET "/req/:val" [val] (str val))
   ;use :as to get access to full request map
   (GET "/req/:val" [val :as full-req] (str val "<br>" full-req))
-  ;use :as to get access to the remainder of unbound symbols
+  ;use & to get access to unbound params, and call our route handler function
   (GET "/req/:val/:another-val/:and-another" [val & remainders]
        (str val "<br>" remainders))
-  ;use & to get access to unbound params, and call our route handler function
+  ;givign the route a different URL from /req/:val will ensure its execution
   (GET "/req/key/:key" [key :as request] (render-request-val request key)))
