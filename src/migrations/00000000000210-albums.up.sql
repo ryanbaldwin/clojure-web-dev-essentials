@@ -5,7 +5,7 @@ CREATE TABLE albums
  release_date DATE NOT NULL,
  created_at   TIMESTAMP   NOT NULL DEFAULT (now() AT TIME ZONE 'utc'),
  updated_at   TIMESTAMP   NOT NULL DEFAULT (now() AT TIME ZONE 'utc'),
- CONSTRAINT arist_album_name UNIQUE (artist_id, name));
+ CONSTRAINT artist_album_name UNIQUE (artist_id, name));
 --;;
 -- create an update trigger which updates our update_date column by calling the above function
 CREATE TRIGGER update_album_update_date BEFORE UPDATE
